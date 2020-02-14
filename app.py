@@ -8,5 +8,17 @@ while(q == False):
     command = printMenu()
     q = (command == "7")  
     if(q):break
-
-
+    if(command == "1"):
+        print(command)
+    elif(command == "2"):
+        print(command)
+    elif(command == "3"):
+        print(command)
+    elif(command == "4"):
+        print(command)
+    elif(command == "5"):
+        print(command)
+    elif(command == "6"):
+        print(command)
+    else:
+        continue
