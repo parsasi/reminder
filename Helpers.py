@@ -36,6 +36,17 @@ class Helper:
         newReminder = Reminder(newReminderText , newReminderTags)
         newReminder.id = newReminderId
         self.notepad.modifyNote(newReminder)
+    def saveNote(self):
+        print("""Please enter a name for your file:""")
+        name = input()
+        self.notepad.exportNote(name)
+    def openNote(self):
+        print("""Please enter the file name you wish to open""")
+        name = input()
+        self.notepad.importName(name)
     def output(self,listOfItems):
         for item in listOfItems:
-            print(F"ID:{item.id}\n{item.text}\n______________________\n")
+            tags = ""
+            for itemTag in item.tags:
+                tags = tags + F" {itemTag} "
+            print(F"ID:{item.id}\n{item.text}\nTags:{tags}\n______________________\n")

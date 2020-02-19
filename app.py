@@ -12,16 +12,20 @@ while(q == False):
     q = (command == "7")  
     if(q):break
     if(command == "1"):
+        #Listing notes
         Helper.getAllNotes()
     elif(command == "2"):
+        #Search in notes
         Helper.searchAllReminders()
     elif(command == "3"):
+        #Add to notes
         Helper.addNewNote()
     elif(command == "4"):
+        #Editing notes
         Helper.modifyANote()
     elif(command == "5"):
-        print(command)
+        Helper.saveNote()
     elif(command == "6"):
-        print(command)
+        Helper.openNote()
     else:
         continue

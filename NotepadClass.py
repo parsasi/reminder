@@ -1,3 +1,5 @@
+import pickle
+
 class Notepad:
     allReminders = []
     @classmethod
@@ -8,7 +10,7 @@ class Notepad:
         return cls.allReminders
     @classmethod
     def searchNote(cls,searchTerm):
-        allNotes = Notepad.showNotes()
+        allNotes = cls.showNotes()
         itemsFound = []
         for item in allNotes:
             searchTerm.replace(' ','')
@@ -22,10 +24,41 @@ class Notepad:
         return itemsFound
     @classmethod
     def modifyNote(cls,reminder):
-        allNotes = Notepad.showNotes()
+        allNotes = cls.showNotes()
         for item in allNotes:
             if(str(item.id) == reminder.id):
                 if reminder.text:
                     item.text = reminder.text 
                 if reminder.tags:
                     item.tags = reminder.tags
+    @classmethod
+    def exportNote(cls,name):
+        allNotes = cls.showNotes()
+        pickle.dump( allNotes , open( name + ".rmdr", "wb" ) )
+    @classmethod
+    def importName(cls,name):
+        try:
+            importedNotes = pickle.load( open( name, "rb" ))
+            cls.addImportedNote(importedNotes)
+        except:
+            print("There was an error reading the file!")
+    @classmethod
+    def addImportedNote(cls,importedReminders):
+        allNotes = cls.showNotes()
+        for item in importedReminders:
+            if(cls.idExists(item.id)):
+                #Handle same id's situation
+                print("Duplicated ID")
+            else:
+                allNotes.append(item)
+    @classmethod
+    def idExists(cls,id):
+        allNotes = cls.showNotes()
+        isFound = False 
+        for item in allNotes:
+            if(item.id == id):
+                isFound = True
+                break
+        return isFound
+
+            
