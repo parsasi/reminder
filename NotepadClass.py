@@ -1,5 +1,4 @@
 import pickle
-
 class Notepad:
     allReminders = []
     @classmethod
@@ -60,5 +59,3 @@ class Notepad:
                 isFound = True
                 break
         return isFound
-
-            

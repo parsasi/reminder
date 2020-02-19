@@ -15,9 +15,14 @@ class Helper:
     def addNewNote(self):
         print("""Enter a reminder:""")
         newReminderText = input()
+        if(not newReminderText):
+            return
         print("""Enter tags, comma seperated if multiple:""")
         newReminderTagsText = input()
-        newReminderTags  = newReminderTagsText.replace(',',' ').split()
+        try:
+            newReminderTags  = newReminderTagsText.replace(',',' ').split()
+        except:
+            return
         newReminder = Reminder(newReminderText , newReminderTags)
         self.notepad.addNote(newReminder)
     def searchAllReminders(self):

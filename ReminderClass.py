@@ -5,6 +5,3 @@ class Reminder:
         self.tags = tags
         self.id = Reminder.numberOfReminder + 1
         Reminder.numberOfReminder += 1
-
-
-
