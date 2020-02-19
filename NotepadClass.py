@@ -1,12 +1,13 @@
 import pickle
+import ReminderClass
 class Notepad:
-    allReminders = []
+    __allReminders = []
     @classmethod
     def addNote(cls,reminder):
-        cls.allReminders.append(reminder)
+        cls.__allReminders.append(reminder)
     @classmethod
     def showNotes(cls):
-        return cls.allReminders
+        return cls.__allReminders
     @classmethod
     def searchNote(cls,searchTerm):
         allNotes = cls.showNotes()
@@ -44,12 +45,15 @@ class Notepad:
     @classmethod
     def addImportedNote(cls,importedReminders):
         allNotes = cls.showNotes()
+        biggestId = ReminderClass.Reminder._numberOfReminder
         for item in importedReminders:
             if(cls.idExists(item.id)):
-                #Handle same id's situation
                 print("Duplicated ID")
             else:
                 allNotes.append(item)
+                if(item.id > biggestId):
+                    biggestId = item.id
+        ReminderClass.Reminder._numberOfReminder += 1
     @classmethod
     def idExists(cls,id):
         allNotes = cls.showNotes()
